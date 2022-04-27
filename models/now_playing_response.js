@@ -38,23 +38,8 @@ class Movie{
         if (obj != null) {
           let movie = obj['results'];
           for (const iterator in movie) {
-            //let movieJson = JSON.parse(iterator);
              let resultMovie = JSON.parse(JSON.stringify(movie[iterator]));
-             movies.push(new Movie(resultMovie['adult'],
-                         resultMovie['backdropPath'],
-                         resultMovie['genreIds'],
-                         resultMovie['id'],
-                         resultMovie['originalLanguage'],
-                         resultMovie['originalTitle'],
-                         resultMovie['overview'],
-                         resultMovie['popularity'],
-                         resultMovie['posterPath'],
-                         resultMovie['releaseDate'],
-                         resultMovie['title'],
-                         resultMovie['video'],
-                         resultMovie['voteAverage'],
-                         resultMovie['voteCount'])           
-             );
+             movies.push(resultMovie);
           }
           return movies;
         }

@@ -13,9 +13,12 @@ io.on('connection', client => {
       console.log('Cliente Desconectado');
   });
   
-  var resultados = mov.getListOfMovies(pet.getResults());
+  var onDisplayMovies = mov.getListOfMovies(pet.getNowPlaying('https://api.themoviedb.org/3/movie/now_playing?api_key=f9beb98e61d3dd537bff3381c028e8c2&language=es-ES&page=1'));
+  var popularMovies = mov.getListOfMovies(pet.getNowPlaying('https://api.themoviedb.org/3/movie/top_rated?api_key=f9beb98e61d3dd537bff3381c028e8c2&language=es-ES&page=1'));
   
-  io.emit('prueba',resultados);
+  io.emit('onDisplayMovies',onDisplayMovies);
+
+  io.emit('popularMovies',popularMovies);
 
 
 
