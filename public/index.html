@@ -24,8 +24,18 @@
         });
 
 
-        socket.on('movie_cine',function( payload ){
-           console.clear();
+        socket.on('onDisplayMovies',function( payload ){
+           //console.clear();
+           console.log(payload);
+        });
+
+        socket.on('popularMovies',function( payload ){
+           //console.clear();
+           console.log(payload);
+        });
+
+        socket.on('topMovies',function( payload ){
+           //console.clear();
            console.log(payload);
         });
     </script>

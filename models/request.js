@@ -1,13 +1,13 @@
 const { type } = require('express/lib/response');
 const https = require('https');
 
-class Request {
+class RequestMovies {
 
        constructor(){
-           this.nowPlayingMovies = {};
+           this.movies = {};
        };
 
-       getNowPlaying(url = String){
+       getMovies(url = String){
         const req = https.request(url, res =>{
             console.log('status code: ',res.statusCode);
             let results = '';
@@ -17,14 +17,14 @@ class Request {
 
             res.on('end',()=>{
                 results.replace('undefined','');
-                this.nowPlayingMovies = JSON.parse(results);
+                this.movies = JSON.parse(results);
             });
         });
         
         req.on('error', err =>{});
         req.end();
-        return this.nowPlayingMovies;
+        return this.movies;
       }
 }
 
-module.exports = Request;
+module.exports = RequestMovies;
