@@ -1,4 +1,5 @@
 const { io } = require('../index');
+const JsonMoviesTrailers = require('../models/jsonMoviesTrailers');
 const JsonOfMovies = require('../models/jsonOfMovies');
 const RequestMovies = require('../models/request');
 
@@ -24,13 +25,10 @@ io.on('connection', client => {
   var popularMovies = popularMoviesJson.getListOfMovies(requestPopularMovies.getMovies('https://api.themoviedb.org/3/movie/popular?api_key=f9beb98e61d3dd537bff3381c028e8c2&language=es-ES&page=1'));
   var topMovies = topMoviesJson.getListOfMovies(requestTopMovies.getMovies('https://api.themoviedb.org/3/movie/top_rated?api_key=f9beb98e61d3dd537bff3381c028e8c2&language=es-ES&page=1'));
 
-  io.emit('onDisplayMovies',onDisplayMovies);
+  client.emit('onDisplayMovies',onDisplayMovies);
 
-  io.emit('popularMovies', popularMovies);
+  client.emit('popularMovies', popularMovies);
 
-  io.emit('topMovies', topMovies);
-
-
-
+  client.emit('topMovies', topMovies);
 });
 

@@ -26,18 +26,25 @@
 
         socket.on('onDisplayMovies',function( payload ){
            //console.clear();
-           console.log(payload);
+           console.table(payload);
         });
 
         socket.on('popularMovies',function( payload ){
            //console.clear();
-           console.log(payload);
+           console.table(payload);
         });
 
         socket.on('topMovies',function( payload ){
            //console.clear();
-           console.log(payload);
+           console.table(payload);
         });
+
+        socket.on('resultVideo',function(payload){
+            //console.clear();
+            console.log(payload);
+        });
+
     </script>
+    <input type="submit" >
 </body>
 </html>
