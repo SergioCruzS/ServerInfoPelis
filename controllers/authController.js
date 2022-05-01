@@ -5,7 +5,7 @@ const User = require('../models/user');
 
 const createUser = async (req, res = response ) =>{
 
-    const { email } = req.body;
+    const { email, password } = req.body;
 
     try {
         const emailExists = await User.findOne({ email });
@@ -20,7 +20,8 @@ const createUser = async (req, res = response ) =>{
         const newUser = new User( req.body );
 
         //Encriptar contraseña
-
+        const salt = bcrypt.genSaltSync();
+        newUser.password = bcrypt.hashSync( password, salt );
 
         await newUser.save();
       
