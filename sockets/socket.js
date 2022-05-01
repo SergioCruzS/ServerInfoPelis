@@ -1,5 +1,4 @@
 const { io } = require('../index');
-const JsonMoviesTrailers = require('../models/jsonMoviesTrailers');
 const JsonOfMovies = require('../models/jsonOfMovies');
 const RequestMovies = require('../models/request');
 
