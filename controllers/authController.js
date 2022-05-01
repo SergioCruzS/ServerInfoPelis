@@ -47,6 +47,50 @@ const createUser = async (req, res = response ) =>{
 
 }
 
+const loginUser = async (req, res = response) =>{
+
+    const { email, password } = req.body;
+
+    try {
+        const userDB = await User.findOne({ email });
+        //Verificando que el email esté registrado
+        if ( !userDB ) {
+            return res.status(400).json({
+                ok:false,
+                msg: 'Usuario no encontrado'
+            });
+        } 
+
+        const validPassword = bcrypt.compareSync( password, userDB.password );
+        
+        //Verificando si la contraseña es correcta
+        if ( !validPassword ) {
+            return res.status(400).json({
+                ok:false,
+                msg: 'Contraseña no valida'
+            });
+        }
+
+        //Generar JWT
+        const token = await generateJWT( userDB.id );
+
+        res.json({
+            ok: true,
+            userDB,
+            token
+         });
+        
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            ok: true,
+            msg: 'login'
+        });
+    }
+
+}
+
 module.exports = {
-    createUser
+    createUser,
+    loginUser
 }
