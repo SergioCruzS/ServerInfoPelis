@@ -31,6 +31,7 @@ app.use( express.static( publicPath ));
 //Mis rutas
 
 app.use( '/api/login', require('./routes/auth'));
+app.use( '/api/movies', require('./routes/movies'));
 
 
 server.listen(process.env.PORT, ( err ) => {

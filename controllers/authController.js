@@ -40,7 +40,7 @@ const createUser = async (req, res = response ) =>{
         res.status(500).json({
             ok: false,
             msg: 'Contacte al admin'
-        })
+        });
     }
 
     
@@ -96,17 +96,17 @@ const renewToken = async (req, res = response ) =>{
     const uid = req.uid;
 
     //Generar un nuevo JWT
-    const newToken = await generateJWT( uid );
+    const token = await generateJWT( uid );
     
     //Obtener el usuario por el UID
-    const user = await User.findById( uid );
+    const userDB = await User.findById( uid );
 
     res.json({
         ok: true,
         uid: req.uid,
-        user,
-        newToken
-     });
+        userDB,
+        token
+    });
 }
 
 module.exports = {
